@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Taiwan｜台灣秘境探索</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================================================
+           1. 全域樣式設定 (明亮乾淨偏文青大地色系)
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+            background-color: #F5F5DC; /* 米白色背景 */
+            color: #333333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================================================
+           2. 導覽列樣式 (Sticky 置頂)
+           ========================================================================== */
+        header {
+            background-color: #2E7D32; /* 森林綠 */
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #4FC3F7; /* 天空藍 */
+            font-size: 0.9rem;
+            display: block;
+            font-weight: normal;
+            margin-top: 2px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-menu a {
+            margin-left: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #4FC3F7;
+        }
+
+        /* 頂部地圖與分享區專用互動按鈕 */
+        .map-trigger-btn {
+            background-color: #4FC3F7;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .map-trigger-btn:hover {
+            background-color: #29b6f6;
+            transform: scale(1.05);
+        }
+
+        .share-trigger-btn {
+            background-color: #2E7D32;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .share-trigger-btn:hover {
+            background-color: #ffffff;
+            color: #2E7D32;
+            transform: scale(1.05);
+        }
+
+        /* ==========================================================================
+           3. Hero Banner 主視覺區與搜尋列
+           ========================================================================== */
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.55), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=1920') no-repeat center center/cover;
+            color: #ffffff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            color: #f0f0f0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .search-container {
+            background: #ffffff;
+            padding: 8px 8px 8px 20px;
+            border-radius: 50px;
+            max-width: 650px;
+            margin: 0 auto;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 10px 5px;
+            font-size: 1.05rem;
+            font-family: inherit;
+            color: #333333;
+        }
+
+        .search-btn {
+            background-color: #4FC3F7;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-btn:hover {
+            background-color: #29b6f6;
+        }
+
+        /* ==========================================================================
+           4. 主要內容區與區域網格
+           ========================================================================== */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2E7D32;
+            margin: 50px 0 30px 0;
+            text-align: center;
+            position: relative;
+            padding-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: #4FC3F7;
+            border-radius: 2px;
+        }
+
+        .spots-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .spot-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .spot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .spot-img-box {
+            height: 180px;
+            background-color: #e2e8f0;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .spot-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #2E7D32;
+            color: #ffffff;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .spot-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .spot-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+
+        .spot-desc {
+            font-size: 0.88rem;
+            color: #666666;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .spot-meta {
+            border-top: 1px solid #f0f0f0;
+            padding-top: 12px;
+            font-size: 0.85rem;
+            color: #777777;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .spot-fav {
+            color: #ff5252;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px;
+            z-index: 10;
+        }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 5px;
+            color: #777777;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .share-card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            border-top: 1px dashed #e0e0e0;
+            padding-top: 10px;
+            z-index: 15;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 5px 0;
+            font-size: 0.82rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .edit-btn { background-color: #fff3e0; color: #f57c00; }
+        .edit-btn:hover { background-color: #ffe0b2; }
+        .delete-btn { background-color: #ffefee; color: #d32f2f; }
+        .delete-btn:hover { background-color: #ffcdd2; }
+
+        /* ==========================================================================
+           5. 彈窗與地圖視窗樣式
+           ========================================================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-wrapper {
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 750px;
+            max-height: 85vh;
+            border-radius: 16px;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: #ffffff;
+            cursor: pointer;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .modal-hero-img {
+            height: 280px;
+            background-color: #2E7D32;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+        }
+
+        .modal-hero-img::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+
+        .modal-title-box {
+            position: relative;
+            color: #ffffff;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2E7D32;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid #e8f5e9;
+            padding-bottom: 5px;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            color: #444444;
+            text-align: justify;
+        }
+
+        .wiki-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            background-color: #f5f5f5;
+            color: #2E7D32;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 6px;
+            border: 1px solid #2E7D32;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .wiki-btn:hover {
+            background-color: #2E7D32;
+            color: #ffffff;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        .info-table td {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-table td.label {
+            font-weight: bold;
+            color: #555555;
+            width: 30%;
+            vertical-align: top;
+        }
+
+        /* ==========================================================================
+           5-B. 秘境地圖專用樣式 (根據 map00.png 比例與地名精準對位修復)
+           ========================================================================== */
+        .map-modal-wrapper {
+            max-width: 950px;
+            background-color: #F5F5DC;
+            display: flex;
+            flex-direction: row;
+            height: 85vh;
+        }
+
+        .map-left-pane {
+            flex: 1.3;
+            position: relative;
+            background-color: #e0f2f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+            height: 100%;
+        }
+
+        .taiwan-svg-map {
+            width: 100%;
+            height: 100%;
+            max-width: 380px;
+            max-height: 560px;
+            position: relative;
+            background-image: url('map00.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+
+        /* 修正點：根據 map00.png 實際區塊位置，完美修正地名位置 */
+        .map-city-label {
+            position: absolute;
+            font-size: 0.72rem;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: rgba(46, 125, 50, 0.85);
+            padding: 1px 4px;
+            border-radius: 3px;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+
+        .map-pin {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #ff5252;
+            border: 2.5px solid #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: transform 0.2s, background-color 0.2s;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .map-pin:hover {
+            transform: translate(-50%, -50%) scale(1.4);
+            background-color: #2E7D32;
+        }
+
+        .map-right-pane {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+        }
+
+        .map-welcome-title {
+            color: #2E7D32;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .map-tooltip-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 2px solid #2E7D32;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 15px;
+            display: none;
+        }
+
+        .map-tooltip-img {
+            width: 100%;
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .map-tooltip-name {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .map-tooltip-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .map-tooltip-btn {
+            display: inline-block;
+            background-color: #4FC3F7;
+            color: #fff;
+            padding: 6px 15px;
+            font-size: 0.85rem;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .map-tooltip-btn:hover {
+            background-color: #29b6f6;
+        }
+
+        /* ==========================================================================
+           5-C. 重構優化：滿版全畫面「秘境好友情報牆」視窗樣式
+           ========================================================================== */
+        .share-modal-wrapper.full-screen-wall {
+            max-width: 100%;
+            width: 100vw;
+            height: 100vh;
+            max-height: 100vh;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #F5F5DC; /* 全螢幕米色調底色 */
+        }
+
+        /* 全畫面牆面頂部排版控制頂欄 */
+        .share-wall-header-bar {
+            background-color: #ffffff;
+            padding: 15px 40px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .share-wall-main-container {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .share-wall-grid.full-view {
+            max-width: 1200px;
+            margin: 0 auto;
+            grid-template-columns: repeat(4, 1fr); /* 寬景四欄滿格大氣展示山友卡片 */
+            gap: 25px;
+        }
+
+        /* 在情報牆右上角新增的獨立填寫表單彈窗小按鈕 */
+        .inner-add-share-btn {
+            background-color: #0288d1;
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            outline: none;
+        }
+
+        .inner-add-share-btn:hover {
+            background-color: #01579b;
+            transform: translateY(-2px);
+        }
+
+        /* 內層表單專用小彈窗樣式疊加 */
+        .form-dialog-wrapper {
+            max-width: 520px;
+            background-color: #f9fbf9;
+            border-radius: 14px;
+            padding: 30px;
+        }
+
+        .checkbox-group-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 4px 0;
+        }
+
+        .checkbox-label-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.9rem;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.92rem;
+            font-weight: bold;
+            color: #444444;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 0.95rem;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: #2E7D32;
+            box-shadow: 0 0 5px rgba(46,125,50,0.15);
+        }
+
+        .submit-share-btn {
+            width: 100%;
+            background-color: #2E7D32;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .submit-share-btn:hover {
+            background-color: #1b4d1e;
+        }
+
+        /* ==========================================================================
+           6. 頁腳樣式
+           ========================================================================== */
+        footer {
+            margin-top: 80px;
+            border-top: 5px solid #4FC3F7;
+            background-color: #235F26;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .footer-main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 35px 20px;
+        }
+
+        .footer-promo-text {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #e8f5e9;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links-wrapper {
+            margin-bottom: 5px;
+        }
+
+        .footer-links-wrapper a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.12);
+            padding: 6px 16px;
+            font-size: 0.92rem;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-links-wrapper a:hover {
+            background-color: #4FC3F7;
+            color: #2E7D32;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom-bar {
+            background-color: #1b4d1e;
+            padding: 15px 20px;
+            font-size: 0.88rem;
+            color: #b2dfdb;
+            letter-spacing: 0.5px;
+        }
+
+        /* 響應式斷點設定 */
+        @media screen and (max-width: 1024px) {
+            .spots-grid { grid-template-columns: repeat(3, 1fr); }
+            .share-wall-grid.full-view { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media screen and (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 12px; }
+            .nav-wrapper { width: 100%; justify-content: center; flex-wrap: wrap; }
+            .nav-menu a { margin: 0 8px; font-size: 0.9rem; }
+            .spots-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .share-wall-grid.full-view { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 1.9rem; }
+            .map-modal-wrapper { flex-direction: column; height: 90vh; }
+            .map-left-pane { border-radius: 16px 16px 0 0; flex: 1.6; min-height: 340px; padding: 5px;}
+            .taiwan-svg-map { max-height: 330px; width: 100%; }
+            .map-right-pane { border-radius: 0 0 16px 16px; padding: 15px; flex: 1; }
+            .modal-body { padding: 20px; }
+            .map-city-label { font-size: 0.65rem; padding: 0px 2px; }
+            .footer-links-wrapper a { margin: 5px 6px; padding: 5px 12px; font-size: 0.85rem; }
+            .share-wall-header-bar { padding: 15px; flex-direction: column; gap: 10px; text-align: center; }
+            .share-wall-main-container { padding: 15px; }
+        }
+        @media screen and (max-width: 480px) {
+            .spots-grid, .share-wall-grid.full-view { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                Hidden Taiwan <span>台灣秘境探索</span>
+            </div>
+            <div class="nav-wrapper">
+                <nav class="nav-menu">
+                    <a href="#north">北部</a>
+                    <a href="#central">中部</a>
+                    <a href="#south">南部</a>
+                    <a href="#east">東部</a>
+                </nav>
+                <div class="map-trigger-btn" id="mapTrigger"><i class="fa-solid fa-map-location-dot"></i> 秘境地圖</div>
+                <!-- 右上角分享區主入口按鈕 -->
+                <div class="share-trigger-btn" id="shareTrigger"><i class="fa-solid fa-circle-plus"></i> 秘境分享區</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>探索不一樣的台灣</h1>
+            <p>發現隱藏在角落的美麗風景，留下行囊的回憶，帶走無痕的足跡。</p>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="輸入區域、類型、難度篩選... (例：中部 瀑布 或 新手)">
+                <button type="button" id="searchBtn" class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i> 搜尋
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div id="noResultsMessage" class="no-results">找不到符合條件的秘境景點，請換個關鍵字試試看！</div>
+
+        <h2 class="section-title" id="north">北部秘境專區</h2>
+        <div class="spots-grid" id="northGrid"></div>
+
+        <h2 class="section-title" id="central">中部秘境專區</h2>
+        <div class="spots-grid" id="centralGrid"></div>
+
+        <h2 class="section-title" id="south">南部秘境專區</h2>
+        <div class="spots-grid" id="southGrid"></div>
+
+        <h2 class="section-title" id="east">東部秘境專區</h2>
+        <div class="spots-grid" id="eastGrid"></div>
+    </main>
+
+    <!-- 景點內頁詳細彈窗元件 (Modal) -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-wrapper">
+            <div class="modal-close-btn" id="modalClose"><i class="fa-solid fa-xmark"></i></div>
+            <div class="modal-hero-img" id="modalHeroImg">
+                <div class="modal-title-box">
+                    <div class="modal-title" id="modalTitle">景點名稱</div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="modal-section-title"><i class="fa-solid fa-circle-info"></i> 秘境簡介</div>
+                    <p class="modal-text" id="modalDesc">這裡放詳細簡介...</p>
+                    
+                    <a id="modalWikiLink" href="#" target="_blank" class="wiki-btn">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> 前往維基百科觀看更詳細的介紹
+                    </a>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-section-title"><i class="fa-solid fa-route"></i> 完整旅遊資訊</div>
+                    <table class="info-table">
+                        <tr>
+                            <td class="label">開放時間</td>
+                            <td id="modalTime">全天開放</td>
+                        </tr>
+                        <tr>
+                            <td class="label">傳統交通方式</td>
+                            <td id="modalTransport">無大眾運輸，建議開車前往</td>
+                        </tr>
+                        <!-- 修正與刪除點：iRent 推薦停靠點這行在 JS 控制中，當開啟使用者上傳的秘境卡片時會被動態完全移除隱藏，只顯示使用者上傳的內容 -->
+                        <tr id="modalIRentRow">
+                            <td class="label">iRent 推薦停靠點</td>
+                            <td id="modalIRent">鄰近 iRent 站點位置提示</td>
+                        </tr>
+                        <tr>
+                            <td class="label">行前注意事項</td>
+                            <td id="modalNotice">注意防蚊、無痕山林規範</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="modal-section" id="modalPhotoSection" style="background-color: #f7fbf7; padding: 15px; border-radius: 8px;">
+                    <div class="modal-section-title" style="color: #0288d1;"><i class="fa-solid fa-camera"></i> 職人級攝影指南</div>
+                    <table class="info-table">
+                        <tr>
+                            <td class="label" style="color: #0288d1;">最佳拍攝時間</td>
+                            <td id="modalPhotoTime">清晨黃金時刻</td>
+                        </tr>
+                        <tr>
+                            <td class="label" style="color: #0288d1;">專業鏡頭推薦</td>
+                            <td id="modalPhotoLens">超廣角鏡頭 (16-35mm)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 秘境地圖彈窗 (精準校正 map00.png 的地標紅點與地名座標) -->
+    <div class="modal-overlay" id="taiwanMapModal">
+        <div class="modal-wrapper map-modal-wrapper">
+            <div class="modal-close-btn" id="mapModalClose" style="color: #333;"><i class="fa-solid fa-xmark"></i></div>
+            
+            <div class="map-left-pane">
+                <div class="taiwan-svg-map">
+                    
+                    <!-- 🗺️ 網頁縣市地名標示層 (依據 map00.png 完全校正地名對位) -->
+                    <div class="map-city-label" style="top: 10%; left: 74%;">基隆</div>
+                    <div class="map-city-label" style="top: 10%; left: 63%;">台北</div>
+                    <div class="map-city-label" style="top: 16%; left: 70%;">新北</div>
+                    <div class="map-city-label" style="top: 16%; left: 52%;">桃園</div>
+                    <div class="map-city-label" style="top: 22%; left: 47%;">新竹</div>
+                    <div class="map-city-label" style="top: 25%; left: 74%;">宜蘭</div>
+                    <div class="map-city-label" style="top: 29%; left: 41%;">苗栗</div>
+                    <div class="map-city-label" style="top: 34%; left: 37%;">台中</div>
+                    <div class="map-city-label" style="top: 41%; left: 27%;">彰化</div>
+                    <div class="map-city-label" style="top: 46%; left: 47%;">南投</div>
+                    <div class="map-city-label" style="top: 45%; left: 71%;">花蓮</div>
+                    <div class="map-city-label" style="top: 50%; left: 24%;">雲林</div>
+                    <div class="map-city-label" style="top: 55%; left: 27%;">嘉義</div>
+                    <div class="map-city-label" style="top: 61%; left: 24%;">台南</div>
+                    <div class="map-city-label" style="top: 69%; left: 30%;">高雄</div>
+                    <div class="map-city-label" style="top: 73%; left: 58%;">台東</div>
+                    <div class="map-city-label" style="top: 83%; left: 36%;">屏東</div>
+
+                    <!-- 🔴 16個秘境物件互動點 (依據 map00.png 實際區塊精準修復座標點) -->
+                    <!-- 北部秘境點 -->
+                    <div class="map-pin" style="top: 25%; left: 81%;" data-pin-id="n1" title="宜蘭 - 抹茶山"></div>
+                    <div class="map-pin" style="top: 13%; left: 81%;" data-pin-id="n2" title="新北深澳 - 象鼻岩"></div>
+                    <div class="map-pin" style="top: 9%; left: 75%;" data-pin-id="n3" title="基隆 - 忘憂谷"></div>
+                    <div class="map-pin" style="top: 9%; left: 68%;" data-pin-id="n4" title="新北金山 - 神秘海岸"></div>
+                    
+                    <!-- 中部秘境點 -->
+                    <div class="map-pin" style="top: 51%; left: 45%;" data-pin-id="c1" title="南投 - 忘憂森林"></div>
+                    <div class="map-pin" style="top: 47%; left: 52%;" data-pin-id="c2" title="南投 - 雙龍瀑布"></div>
+                    <div class="map-pin" style="top: 36%; left: 49%;" data-pin-id="c3" title="台中 - 鳶嘴山"></div>
+                    <div class="map-pin" style="top: 34%; left: 27%;" data-pin-id="c4" title="台中 - 高美濕地"></div>
+                    
+                    <!-- 南部秘境點 -->
+                    <div class="map-pin" style="top: 91%; left: 42%;" data-pin-id="s1" title="屏東 - 龍磐草原"></div>
+                    <div class="map-pin" style="top: 83%; left: 44%;" data-pin-id="s2" title="屏東 - 旭海草原"></div>
+                    <div class="map-pin" style="top: 62%; left: 32%;" data-pin-id="s3" title="台南 - 二寮觀日亭"></div>
+                    <div class="map-pin" style="top: 66%; left: 25%;" data-pin-id="s4" title="台南/高雄交界 - 月世界"></div>
+                    
+                    <!-- 東部秘境點 -->
+                    <div class="map-pin" style="top: 52%; left: 68%;" data-pin-id="e1" title="花蓮 - 石梯坪"></div>
+                    <div class="map-pin" style="top: 58%; left: 64%;" data-pin-id="e2" title="花蓮 - 六十石山"></div>
+                    <div class="map-pin" style="top: 64%; left: 51%;" data-pin-id="e3" title="台東/花蓮交界 - 嘉明湖"></div>
+                    <div class="map-pin" style="top: 69%; left: 61%;" data-pin-id="e4" title="台東 - 三仙台"></div>
+                </div>
+            </div>
+
+            <div class="map-right-pane">
+                <div id="mapDefaultPrompt">
+                    <div class="map-welcome-title"><i class="fa-solid fa-location-crosshairs"></i> 全台秘境雷達</div>
+                    <p style="font-size: 0.95rem; color: #666;">滑鼠移動至地圖上的紅點標記，即可預覽隱藏在該地區的台灣秘境縮圖與簡介。</p>
+                </div>
+                
+                <div class="map-tooltip-card" id="mapTooltipCard">
+                    <div class="map-tooltip-img" id="mapTipImg"></div>
+                    <div class="map-tooltip-name" id="mapTipName">景點</div>
+                    <p class="map-tooltip-desc" id="mapTipDesc">描述</p>
+                    <div class="map-tooltip-btn" id="mapTipBtn">觀看更多 <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       4-C. 重構修改點：按下右上角按鈕「按一下轉至整個全畫面」為秘境好友情報牆
+       ========================================================================== -->
+    <div class="modal-overlay" id="userShareModal">
+        <div class="modal-wrapper share-modal-wrapper full-screen-wall">
+            
+            <!-- 全畫面大牆面的頂部排版工具列區 -->
+            <div class="share-wall-header-bar">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <!-- 修正更名點：改為秘境好友情報牆 -->
+                    <div class="map-welcome-title" style="margin: 0; font-size: 1.6rem;">
+                        <i class="fa-solid fa-user-group"></i> 秘境好友情報牆
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">| 這裡「只會顯示使用者上傳的秘境」貼文</p>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <!-- 新增功能點：在情報牆旁邊新增分享的按鈕，點擊開來是填寫表單 -->
+                    <button class="inner-add-share-btn" id="innerOpenFormBtn">
+                        <i class="fa-solid fa-circle-plus"></i> 分享我的秘境
+                    </button>
+                    <!-- 關閉全螢幕情報牆，退回網站主頁的按鈕 -->
+                    <div class="inner-add-share-btn" id="shareModalClose" style="background-color: #555; padding: 10px 18px;"><i class="fa-solid fa-house"></i> 回主頁</div>
+                </div>
+            </div>
+
+            <!-- 全螢幕卡片交流網格展示區 -->
+            <div class="share-wall-main-container">
+                <div class="share-wall-grid full-view" id="shareWallGrid">
+                    <!-- 只會在此處顯示使用者們上傳的卡片資訊 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       4-D. 全新：點擊分享按鈕後「彈出填寫表單」的獨立問答視窗
+       ========================================================================== -->
+    <div class="modal-overlay" id="shareFormDialogModal" style="z-index: 2500;">
+        <div class="modal-wrapper form-dialog-wrapper">
+            <div class="modal-close-btn" id="formDialogClose" style="color: #333; top: 20px; right: 20px;"><i class="fa-solid fa-xmark"></i></div>
+            
+            <div class="share-pane-title" id="formPaneTitle"><i class="fa-solid fa-pen-to-square"></i> 填寫秘境表單</div>
+            <form id="secretUploadForm">
+                <input type="hidden" id="formEditId" value="">
+
+                <div class="form-group">
+                    <label for="formName">1. 為您的秘境取一個名字</label>
+                    <input type="text" id="formName" class="form-control" placeholder="例：獅頭山半山水潭" required>
+                </div>
+                <div class="form-group">
+                    <label for="formZone">2. 選擇所屬地區</label>
+                    <select id="formZone" class="form-control" required>
+                        <option value="" disabled selected>請選擇地區...</option>
+                        <option value="北部">北部地區</option>
+                        <option value="中部">中部地區</option>
+                        <option value="南部">南部地區</option>
+                        <option value="東部">東部地區</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>3. 選擇秘境類型標籤</label>
+                    <div class="checkbox-group-wrapper">
+                        <label class="checkbox-label-item"><input type="checkbox" name="formType" value="山景"> 山景</label>
+                        <label class="checkbox-label-item"><input type="checkbox" name="formType" value="山谷"> 山谷</label>
+                        <label class="checkbox-label-item"><input type="checkbox" name="formType" value="海岸"> 海岸</label>
+                        <label class="checkbox-label-item"><input type="checkbox" name="formType" value="瀑布"> 瀑布</label>
+                        <label class="checkbox-label-item"><input type="checkbox" name="formType" value="地質"> 地質</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formTimeInput">4. 填寫開放時間</label>
+                    <input type="text" id="formTimeInput" class="form-control" placeholder="例：全天開放、平日08:00-17:00" required>
+                </div>
+                <div class="form-group">
+                    <label for="formDesc">5. 填寫對秘境的簡單描述</label>
+                    <textarea id="formDesc" class="form-control" rows="2" placeholder="請簡單敘述此處的絕美風景與特色..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="formTraffic">6. 填寫交通方式與精確地點或座標選擇問答</label>
+                    <textarea id="formTraffic" class="form-control" rows="2" placeholder="例如：開車由台二線轉入漁港小路，或輸入座標數據" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label wholesaler for="formNoticeInput">7. 填寫行前注意事項</label>
+                    <textarea id="formNoticeInput" class="form-control" rows="2" placeholder="例：礁石濕滑需防滑鞋、大雨勿前往" required></textarea>
+                </div>
+                <div class="form-group" id="formImgGroup">
+                    <label for="formImg">8. 上傳秘境照片</label>
+                    <input type="file" id="formImg" class="form-control" accept="image/*">
+                </div>
+                <button type="submit" id="formSubmitBtn" class="submit-share-btn"><i class="fa-solid fa-cloud-arrow-up"></i> 確認上傳分享</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 置中雙色塊層次頁腳 -->
+    <footer>
+        <div class="footer-main-content">
+            <p class="footer-promo-text">
+                <i class="fa-solid fa-leaf"></i> 推廣深度永續旅遊與 LNT (Leave No Trace) 無痕山林精神
+            </p>
+            <div class="footer-links-wrapper">
+                <a href="#"><i class="fa-solid fa-arrow-up"></i> 回到頂端</a>
+                <a href="#north">北部專區</a>
+                <a href="#central">中部專區</a>
+                <a href="#south">南部專區</a>
+                <a href="#east">東部專區</a>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            &copy; 2026 Hidden Taiwan 台灣秘境探索. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        const spotsData = [
+            // 北部
+            { id: "n1", zone: "north", name: "宜蘭 抹茶山", tag: "北部 · 山景", level: "挑戰", img: "抹茶山.jpg", wiki: "https://zh.wikipedia.org/wiki/五峰旗瀑布", desc: "層層疊疊的翠綠山巒，宛如日式抹茶冰淇淋般的療癒風景。屬於難度較高的健行路線，登頂後滿山翠綠極具視覺震撼。", time: "全天開放 (建議白日前行)", transport: "搭乘台鐵至礁溪車站，轉乘計程車至五峰旗瀑布風景區登山口。", irent: "【礁溪轉運站】站，租車後沿宜4鄉道與大忠路行駛約15分鐘即可抵達登山口停車場。", notice: "山頂氣候多變易起霧，請備妥雨具、登山杖與補給水，落實無痕山林垃圾自行帶走。", ptime: "上午 08:00 - 10:00 (此時光線層次最明亮，不易起濃霧)", plens: "超廣角鏡頭 (16-35mm) 捕捉連綿山巒，或中焦段表現山脊紋理。" },
+            { id: "n2", zone: "north", name: "深澳 象鼻岩", tag: "北部 · 地質", level: "新手", img: "象鼻岩.jpg", wiki: "https://zh.wikipedia.org/wiki/深澳岬角", desc: "受長期海風與海浪侵蝕而成的海蝕拱門，外型酷似一隻巨象佇立在海中用長鼻汲水，是大自然的鬼斧神工之作。", time: "全天開放", transport: "搭乘台鐵至瑞芳站，轉乘基隆客運1051至「深澳發電廠」下車步行即可抵達。", irent: "【八斗子車站公車站】附近路邊租還點，沿深澳路直行約8分鐘至深澳漁港底停車場。", notice: "海岸岩石多嶙峋且風浪大，切勿跨越安全警戒繩，避免攀爬至象頭危險區域。", ptime: "傍晚日落前 1 小時 (金黃色逆光打在海蝕岩上極具質感)", plens: "廣角鏡量 (24-70mm) 可兼顧地形地景與局部特寫。" },
+            { id: "n3", zone: "north", name: "基隆 忘憂谷", tag: "北部 · 谷地", level: "新手", img: "忘憂谷.jpg", wiki: "https://zh.wikipedia.org/wiki/八斗子", desc: "綠草如茵的 V 字型谷地，沿著稜線步道向下漫步，前方迎面而來的是湛藍無垠的太平洋與孤懸海中的基隆嶼。", time: "全天開放", transport: "搭乘台鐵至基隆站，轉乘基隆市公車103至「八斗子站」下車步行至度天宮登山口。", irent: "【國立海科館停車場】同站還車點，取車後沿環港街開往 65 高地停車場即可抵達。", notice: "稜線步道遮蔽物極少，正午曝曬嚴重，請務必做好防曬與防風準備。", ptime: "下午 16:00 - 18:00 (藍調時刻與夕陽海景交織)", plens: "標準定焦鏡 (35mm 或 50mm) 能拍出文青感滿分的步道延伸與海景人像。" },
+            { id: "n4", zone: "north", name: "金山 神秘海岸", tag: "北部 · 海岸", level: "新手", img: "神秘海岸.jpg", wiki: "https://zh.wikipedia.org/wiki/獅頭山公園 (新北市)", desc: "穿過天然窄小的「一線天」海蝕洞後豁然開朗，大片絕美的豆腐岩與遠方的燭臺雙嶼盡收眼底，極富探險感。", time: "需注意潮汐時間 (漲潮時禁止進入)", transport: "搭乘淡水客運863至「金山遊客中心」站下車，步行通過獅頭山公園抵達海岸。", irent: "【金山金包里老街】周邊公有停車場路邊租還點，停妥車後由水尾漁港端步行進入。", notice: "礁石濕滑且多青苔，必須穿著防滑包鞋，漲潮時海浪會淹沒部分路徑，切勿強行通過。", ptime: "清晨日出時刻 (太陽從燭臺雙嶼後方升起，晨曦火燒雲的絕佳獵鏡點)", plens: "廣角鏡頭 (16-35mm) 搭配漸層減光鏡或腳架，捕捉海水與礁石的絲絹慢門感。" },
+            
+            // 中部
+            { id: "c1", zone: "central", name: "南投 忘憂森林", tag: "中部 · 森林", level: "進階", img: "忘憂森林.jpg", wiki: "https://zh.wikipedia.org/wiki/忘憂森林", desc: "因地震形成的高山堰塞湖，原本的柳杉木群泡水壞死後形成特殊的大片枯木林，在山霧繚繞中宛如迷幻的童話世界。", time: "08:30 - 16:00", transport: "於台中轉運站搭乘台灣好行杉林溪線至「忘憂森林」站下車，再徒步爬坡或搭乘接駁車。", irent: "【南投溪頭溪阿公路】周邊租還點，自駕車建議停在杉林溪公路十二生肖「豬」彎附近的停車場。", notice: "山區午後極易起濃霧，路面泥濘濕滑，建議著雨鞋或登山鞋，注意防蚊與保暖。", ptime: "上午 10:00 - 中午 12:00 (此時陽光穿透薄霧形成斜射光，即俗稱的耶穌光)", plens: "中廣角鏡頭 (24mm) 垂直構圖，帶出枯木的高聳感與水中倒影。" },
+            { id: "c2", zone: "central", name: "南投 雙龍瀑布", tag: "中部 · 瀑布", level: "新手", img: "雙龍瀑布.jpg", wiki: "https://zh.wikipedia.org/wiki/雙龍瀑布", desc: "懸吊於大峽谷間的七彩吊橋，長達342公尺。可以俯瞰深達百公尺的壯麗峽谷，以及如兩條巨龍奔騰的雙龍瀑布。", time: "08:00 - 16:00 (週三休園，需預約入園票)", transport: "搭鐵路至水里站，轉乘員林客運6288至雙龍部落總站下車。", irent: "【日月潭水社碼頭】iRent站點，取車後沿台21線轉台16線開往雙龍部落停車場轉乘接駁車。", notice: "吊橋風大、高度高，有嚴重恐高症者請衡量自身狀況，嚴禁在吊橋上奔跑嬉戲。", ptime: "中午 11:00 - 13:00 (太陽直射峽谷，最容易折射出美麗的七彩虹光)", plens: "超廣角鏡頭捕捉吊橋優美的長弧線，或者長焦鏡頭 (70-200mm) 特寫瀑布與山壁的落差。" },
+            { id: "c3", zone: "central", name: "台中 鳶嘴山", tag: "中部 · 山景", level: "挑戰", img: "鳶嘴山.jpg", wiki: "https://zh.wikipedia.org/wiki/鳶嘴山", desc: "中部最著名的險峻攀岩聖地。山頂為極尖銳的險峻岩刃，視野極佳，兩側皆為深不見底的懸崖，需要手腳並用拉繩攀登。", time: "建議白天攀登 (大雨或天黑絕對不要上山)", transport: "無大眾運輸。需自行開車由台8線轉大雪山林道至27K+500處登山口。", irent: "【豐原火車站東站】iRent租還站，租車後沿東坑路直上大雪山林道，至27K橫嶺山隧道口周邊停車。", notice: "此為中高級攀岩路線，必須自備防滑手套、穿著專業登山鞋，並衡量自身體力與恐高極限。", ptime: "下午 15:30 - 日落 (落日餘暉照亮險峻稜線與遠方雲海)", plens: "輕便的定焦廣角鏡 (20mm 或 24mm) 或運動相機，因攀岩過程手部需抓繩，設備愈輕便愈安全。" },
+            { id: "c4", zone: "central", name: "台中 高美濕地", tag: "中部 · 濕地", level: "新手", img: "高美濕地.jpg", wiki: "https://zh.wikipedia.org/wiki/高美濕地", desc: "雖然具知名度，但其木棧道盡頭延伸至海中央的無邊際泥灘地，搭配巨大的風力發電風車與極致的天空之鏡夕陽，絕對是一生必訪的視覺秘境。", time: "依潮汐時間每日不同 (木棧道有管制時間)", transport: "自清水火車站搭乘台中客運178、179路公車至高美濕地站。", irent: "【清水火車站】前特約路邊租還區，開車沿高美路直行15分鐘即可抵達濕地遊客中心停車場。", notice: "進入濕地管制區必須行走於木棧道上，不得擅自踏入野生動物保護區泥灘以防受罰。", ptime: "日落前 45 分鐘至日落後 20 分鐘 (Magic Hour 魔法晚霞時刻，天空由金黃轉為魔幻紫藍色)", plens: "長焦段鏡頭 (70-200mm) 利用壓縮感拍出風車、剪影人像與夕陽的巨大對比。" },
+
+            // 南部
+            { id: "s1", zone: "south", name: "屏東 龍磐草原", tag: "中部 · 草原", level: "新手", img: "龍磐公園.jpg", wiki: "https://zh.wikipedia.org/wiki/龍磐公園", desc: "屬於上升的石灰岩台地。這裡有著無邊無際的綠色大草原，奇特的崩崖地形，以及直接對望湛藍太平洋的震撼視野。", time: "全天開放", transport: "從恆春轉運站搭乘墾丁街車(橘線-僅假日或墾丁列車)至龍磐公園站。", irent: "【恆春轉運站】iRent便利站點，沿屏200縣道接佳鵝公路往鵝鑾鼻方向，開車約20分鐘即可抵達。", notice: "該區域落山風及海風極為強勁，靠近崩崖邊緣時請務必站穩，切勿太靠近崖邊防跌落。", ptime: "夜間 22:00 - 凌晨 02:00 (無光害，全台觀星與拍攝夏季銀河、夏季大三角的超級聖地)", plens: "大光圈超廣角定焦鏡 (14mm F1.8 或 20mm F1.4) 用於捕捉無邊星空與銀河地景。" },
+            { id: "s2", zone: "south", name: "屏東 旭海草原", tag: "南部 · 草原", level: "新手", img: "旭海草原.jpg", wiki: "https://zh.wikipedia.org/wiki/旭海村", desc: "隱藏在恆春半島東北角的世外桃源，沿著矮木步道登頂，能同時俯瞰優美的弧形牡丹灣以及天海一線的蔚藍太平洋。", time: "08:00 - 17:00", transport: "交通極不便，無直達大眾運輸。需由恆春搭乘往旭海之班次稀少的客運。", irent: "【恆春轉運站】租車，經滿州鄉沿縣道200號一路北上接旭海路，車程約1小時10分鐘。", notice: "山路較為崎嶇狹窄，自駕請減速慢行。草原無遮蔽物，注意防曬防風。", ptime: "清晨 05:30 旭日東昇之際 (第一道曙光照亮牡丹灣海面，景色安靜祥和)", plens: "標準變焦鏡 (24-70mm) 適合將草原步道線條與遠方牡丹灣海景一同納入構圖。" },
+            { id: "s3", zone: "south", name: "台南 二寮觀日亭", tag: "南部 · 雲海", level: "新手", img: "二寮觀日亭.jpeg", wiki: "https://zh.wikipedia.org/wiki/二寮原住民部落", desc: "全台灣海拔最低的日出雲海聖地。獨特的白堊土惡地地形，每逢清晨水氣充足時，會形成如潑墨山水畫般的低海拔縹粲雲霧。", time: "全天開放", transport: "無直達公車。建議由台南高鐵站或新化市區自行開車前往。", irent: "【台南高鐵站】iRent特約停車場，取車後經歸仁、關廟接182縣道轉南162鄉道，車程約35分鐘。", notice: "日出旺季（夏秋季）清晨觀日亭常人滿為患，卡位拍攝請保持禮貌，注意清晨視線不良。", ptime: "清晨 04:30 - 06:00 (曙光初現、斜射光穿透白堊山丘與層疊雲霧的瞬間)", plens: "中長焦鏡頭 (70-200mm) 是絕對主力，可用來特寫宛如水墨畫的惡地山脊與竹林雲霧層次。" },
+            { id: "s4", zone: "south", name: "台南 月世界", tag: "南部 · 地質", level: "新手", img: "月世界.jpg", wiki: "https://zh.wikipedia.org/wiki/田寮月世界", desc: "外表荒涼蒼茫的「惡地」地質景觀。由於地表特殊泥岩受到長年雨水與河水強烈侵蝕，呈現如月球表面般寸草不生的奇幻地貌。", time: "全天開放 (遊客中心開館至17:00)", transport: "從高鐵左營站搭乘高雄客運「旗美國道快捷」至旗山轉運站，轉搭高市客運古亭線至月世界。", irent: "【高鐵左營站】iRent地下停車場站點，上國道10號接國道3號至田寮交流道下，5分鐘內即達。", notice: "泥岩地質在雨天容易軟爛濕滑，請沿著園區規劃的鋪面步道與階梯行走，切勿踏入泥雕區。", ptime: "下午 16:30 - 18:00 或 夜間 (夜間有五彩點燈，能拍出更神祕極幻的太空外星基地質感)", plens: "標準廣角鏡 (24-105mm) 非常適合捕捉泥岩細緻的侵蝕紋理線條與大範圍荒涼感。" },
+
+            // 東部
+            { id: "e1", zone: "east", name: "花蓮 石梯坪", tag: "東部 · 海岸", level: "新手", img: "石梯坪.jpeg", wiki: "https://zh.wikipedia.org/wiki/石梯坪", desc: "擁有極具視覺衝擊的世界級地質景觀。整個區域是一個巨大的海蝕平台，佈滿海蝕溝、壺穴及高達17公尺的純白灰白色單面山。", time: "全天開放", transport: "自花蓮火車站搭乘花蓮客運1145（海線）至石梯坪站下車。", irent: "【花蓮火車站】周邊特約路邊租還區，沿台11線東海岸公路南下約1.5小時（沿途海景極美）。", notice: "單面山岩石表面風化嚴重且臨海垂直陡峭，風浪大時嚴禁靠近岸邊，攀爬請踩穩防滑。", ptime: "清晨日出前 30 分鐘 (太平洋晨曦海浪拍打在潔白海蝕單面山上，對比極度強烈)", plens: "超廣角鏡頭 (16-35mm) 搭配 ND 減光鏡進行長曝光拍攝，將海浪化為如絲綢般圍繞純白岩石的夢幻奇景。" },
+            { id: "e2", zone: "east", name: "花蓮 六十石山", tag: "東部 · 山景", level: "新手", img: "六十石山.jpeg", wiki: "https://zh.wikipedia.org/wiki/六十石山", desc: "每年8至9月金針花季時，整座山頭會鋪上滿山遍野的金黃花毯，搭配縱谷地形與歐風農莊，被譽為「台灣的小瑞士」。", time: "全天開放 (花季期間交通管制)", transport: "搭乘台鐵至富里車站，於花季期間轉乘當地的金針花季付費接駁專車上山。", irent: "【玉里火車站】路邊租還點，租車後沿台9線南下至竹田，再沿專用山路盤旋上山約30分鐘。", notice: "花季期間山路全面實施單向通車與車載管制，山路狹窄會車請多加禮讓、小心慢行。", ptime: "下午 15:00 - 17:00 (此時最著名的「耶穌光/雲隙光」會穿透雲層直射金黃花毯山谷)", plens: "大光圈人像鏡 (85mm F1.8) 可以拍出極具空間壓縮感、背景虛化的金針花海人像，或用廣角表現大景。" },
+            { id: "e3", zone: "east", name: "台東 嘉明湖", tag: "東部 · 高山", level: "挑戰", img: "嘉明湖.jpeg", wiki: "https://zh.wikipedia.org/wiki/嘉明湖", desc: "深藏在中央山脈南部三千公尺高山上的天使眼淚。這是一座極湛藍的高山隕石湖（或冰斗湖），圓潤的藍色湖水宛如遺落在人間的藍寶石。", time: "進攻前需提早向林務局申請入山、入園及山屋抽籤登記", transport: "無大眾運輸。需自駕或預約登山接駁車前往向陽國家森林遊樂區登山口。", irent: "【台東火車站】站點，開車沿台9線北上至池上，轉接台20線（南橫公路）一路上行至向陽。", notice: "此為高海拔專業登山路線，需過夜健行2-3天，需有完整的百岳登山裝備、體力高度訓練並慎防高山症。", ptime: "清晨 06:30 - 08:00 (此時陽光剛好灑滿箭竹草坡，嘉明湖面如鏡面般深邃湛藍，無霧氣遮蔽)", plens: "輕量化變焦鏡頭 (24-105mm) 以減少負重，能同時兼顧廣闊大景與遠方南二段山巒特寫。" },
+            { id: "e4", zone: "east", name: "台東 三仙台", tag: "東部 · 海岸", level: "新手", img: "三仙台.jpeg", wiki: "https://zh.wikipedia.org/wiki/三仙台", desc: "由火山噴發型碎屑岩構成的離岸小島。最吸睛的是串聯本島與離岸島、由八個拱橋連接而成的標誌性紅灰色跨海步橋，如巨龍伏臥海面。", time: "08:30 - 17:00", transport: "自台東火車站搭乘鼎東客運海線8101、8102路公車至三仙台景區。", irent: "【台東火車站】iRent特約同站還車點，取車後沿台11線北上直行約50分鐘即可輕鬆抵達。", notice: "八拱橋上無任何遮蔽，太平洋海風非常強勁，步行過橋時請抓穩扶手，注意帽子與隨身物品飛失。", ptime: "清晨 05:00 日出時刻 (全台最具指標性的跨海大橋日出，海水、拱橋剪影與朝霞完美搭配)", plens: "超廣角鏡頭 (16-35mm) 將跨海八拱橋的優美曲線作為前景拉入，搭配腳架拍出大氣澎湃的海流。" }
+        ];
+
+        function renderAllGrids() {
+            const grids = {
+                north: document.getElementById('northGrid'),
+                central: document.getElementById('centralGrid'),
+                south: document.getElementById('southGrid'),
+                east: document.getElementById('eastGrid')
+            };
+
+            Object.values(grids).forEach(grid => grid.innerHTML = '');
+
+            const savedFavs = JSON.parse(localStorage.getItem('hiddenTaiwanFavs')) || [];
+
+            spotsData.forEach(spot => {
+                const isFav = savedFavs.includes(spot.id);
+                const favIconClass = isFav ? "fa-solid fa-heart" : "fa-regular fa-heart";
+
+                const cardHTML = `
+                    <div class="spot-card" data-id="${spot.id}" data-search-pool="${spot.name} ${spot.tag} ${spot.level} ${spot.desc}">
+                        <div class="spot-img-box" style="background-image: url('${spot.img}');">
+                            <span class="spot-tag">${spot.tag}</span>
+                        </div>
+                        <div class="spot-info">
+                            <div>
+                                <div class="spot-name">${spot.name}</div>
+                                <div class="spot-desc">${spot.desc}</div>
+                            </div>
+                            <div class="spot-meta">
+                                <span><i class="fa-solid fa-chart-bar"></i> 難度：${spot.level}</span>
+                                <span class="spot-fav" data-fav-id="${spot.id}">
+                                    <i class="${favIconClass}"></i> 收藏
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grids[spot.zone].insertAdjacentHTML('beforeend', cardHTML);
+            });
+
+            setupCardEvents();
+        }
+
+        // ❤️ 收藏
+        function toggleFavorite(id, e) {
+            let savedFavs = JSON.parse(localStorage.getItem('hiddenTaiwanFavs')) || [];
+            if (savedFavs.includes(id)) {
+                savedFavs = savedFavs.filter(favId => favId !== id);
+                e.target.className = "fa-regular fa-heart";
+            } else {
+                savedFavs.push(id);
+                e.target.className = "fa-solid fa-heart";
+            }
+            localStorage.setItem('hiddenTaiwanFavs', JSON.stringify(savedFavs));
+        }
+
+        // 🔍 搜尋
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const cards = document.querySelectorAll('.spots-grid .spot-card');
+            let totalVisible = 0;
+
+            cards.forEach(card => {
+                const searchPool = card.getAttribute('data-search-pool').toLowerCase();
+                if (searchPool.includes(query)) {
+                    card.style.display = 'flex';
+                    totalVisible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const zones = ['north', 'central', 'south', 'east'];
+            zones.forEach(zone => {
+                const grid = document.getElementById(`${zone}Grid`);
+                const title = document.getElementById(zone);
+                const hasVisibleCards = Array.from(grid.children).some(card => card.style.display !== 'none');
+                if (hasVisibleCards) {
+                    title.style.display = 'block';
+                } else {
+                    title.style.display = 'none';
+                }
+            });
+
+            const noResultsMessage = document.getElementById('noResultsMessage');
+            if (totalVisible === 0) {
+                noResultsMessage.style.display = 'block';
+            } else {
+                noResultsMessage.style.display = 'none';
+            }
+        }
+
+        // 🗂️ 動態內頁彈窗 (Modal) 開啟與詳細欄位綁定
+        function openModal(id) {
+            let spot = spotsData.find(item => item.id === id);
+            let isUserShared = false;
+
+            if (!spot) {
+                const userShares = JSON.parse(localStorage.getItem('userSharedSecrets')) || [];
+                spot = userShares.find(item => item.id === id);
+                isUserShared = true;
+            }
+            if (!spot) return;
+
+            document.getElementById('modalTitle').innerText = spot.name;
+            document.getElementById('modalDesc').innerText = spot.desc;
+            
+            const wikiLink = document.getElementById('modalWikiLink');
+            if (spot.wiki) {
+                wikiLink.href = spot.wiki;
+                wikiLink.style.display = 'inline-flex';
+            } else {
+                wikiLink.style.display = 'none';
+            }
+
+            const photoSection = document.getElementById('modalPhotoSection');
+            const irentRow = document.getElementById('modalIRentRow');
+
+            if (isUserShared) {
+                photoSection.style.display = 'none'; // 隱藏攝影指南
+                irentRow.style.display = 'none';    // 修正點：刪除使用者分享內頁的 iRent 推薦停靠點
+            } else {
+                photoSection.style.display = 'block';
+                irentRow.style.display = 'table-row'; // 恢復官方預設顯示
+            }
+
+            // 數據綁定
+            document.getElementById('modalTime').innerText = spot.time || "全天開放";
+            document.getElementById('modalTransport').innerText = spot.transport;
+            document.getElementById('modalIRent').innerText = spot.irent || "";
+            document.getElementById('modalNotice').innerText = spot.notice || "請愛護自然環境。";
+            document.getElementById('modalPhotoTime').innerText = spot.ptime || "";
+            document.getElementById('modalPhotoLens').innerText = spot.plens || "";
+
+            document.getElementById('modalHeroImg').style.backgroundImage = `url('${spot.img}')`;
+
+            document.getElementById('detailModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 🗺️ 地圖
+        function openMapModal() {
+            document.getElementById('taiwanMapModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMapModal() {
+            document.getElementById('taiwanMapModal').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('mapDefaultPrompt').style.display = 'block';
+            document.getElementById('mapTooltipCard').style.display = 'none';
+        }
+
+        // ==========================================================================
+        // 核心重構：全螢幕情報牆面、獨立彈窗表單、編輯與刪除邏輯
+        // ==========================================================================
+        function openShareModal() {
+            document.getElementById('userShareModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            renderShareWall(); // 重新載入全畫面分享牆
+        }
+
+        function closeShareModal() {
+            document.getElementById('userShareModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 獨立功能點：開啟與關閉「填寫表單」的小彈窗控制
+        function openFormDialog() {
+            document.getElementById('shareFormDialogModal').classList.add('active');
+        }
+
+        function closeFormDialog() {
+            document.getElementById('shareFormDialogModal').classList.remove('active');
+            resetShareForm();
+        }
+
+        function resetShareForm() {
+            document.getElementById('secretUploadForm').reset();
+            document.getElementById('formEditId').value = '';
+            document.getElementById('formPaneTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> 填寫秘境表單`;
+            document.getElementById('formSubmitBtn').innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> 確認上傳分享`;
+        }
+
+        function deleteShare(id) {
+            if (confirm('⚠️ 確定要刪除這篇由您分享的秘境情報嗎？')) {
+                let userShares = JSON.parse(localStorage.getItem('userSharedSecrets')) || [];
+                userShares = userShares.filter(item => item.id !== id);
+                localStorage.setItem('userSharedSecrets', JSON.stringify(userShares));
+                renderShareWall();
+            }
+        }
+
+        function editShare(id) {
+            const userShares = JSON.parse(localStorage.getItem('userSharedSecrets')) || [];
+            const spot = userShares.find(item => item.id === id);
+            if (!spot) return;
+
+            document.getElementById('formEditId').value = spot.id;
+            document.getElementById('formName').value = spot.name;
+            document.getElementById('formTimeInput').value = spot.time;
+            document.getElementById('formDesc').value = spot.desc;
+            document.getElementById('formTraffic').value = spot.transport;
+            document.getElementById('formNoticeInput').value = spot.notice;
+
+            const tagParts = spot.tag.split(' · ');
+            document.getElementById('formZone').value = tagParts[0];
+
+            const currentTypes = tagParts[1] ? tagParts[1].split('/') : [];
+            document.querySelectorAll('input[name="formType"]').forEach(cb => {
+                cb.checked = currentTypes.includes(cb.value);
+            });
+
+            document.getElementById('formPaneTitle').innerHTML = `<i class="fa-solid fa-wrench"></i> 編輯秘境貼文`;
+            document.getElementById('formSubmitBtn').innerHTML = `<i class="fa-solid fa-floppy-disk"></i> 儲存修改貼文`;
+            
+            openFormDialog(); // 開啟表單小彈窗進行編輯
+        }
+
+        // 修正點：全畫面情報牆渲染，只會顯示使用者上傳的秘境卡片
+        function renderShareWall() {
+            const wallGrid = document.getElementById('shareWallGrid');
+            wallGrid.innerHTML = '';
+            
+            const userShares = JSON.parse(localStorage.getItem('userSharedSecrets')) || [];
+            
+            if (userShares.length === 0) {
+                wallGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #888; padding: 60px 0; font-weight: bold; font-size:1.1rem;">目前情報牆還沒有任何貼文，點擊右上角「分享我的秘境」來發布第一篇分享吧！</div>`;
+                return;
+            }
+
+            userShares.forEach(spot => {
+                const cardHTML = `
+                    <div class="spot-card" data-share-id="${spot.id}">
+                        <div class="spot-img-box" style="background-image: url('${spot.img}');">
+                            <span class="spot-tag" style="background-color: #0288d1;">${spot.tag}</span>
+                        </div>
+                        <div class="spot-info">
+                            <div>
+                                <div class="spot-name">${spot.name}</div>
+                                <div class="spot-desc">${spot.desc}</div>
+                            </div>
+                            <div class="share-card-actions">
+                                <button class="action-btn edit-btn" data-edit-id="${spot.id}"><i class="fa-solid fa-pen"></i> 編輯</button>
+                                <button class="action-btn delete-btn" data-delete-id="${spot.id}"><i class="fa-solid fa-trash-can"></i> 刪除</button>
+                            </div>
+                            <div class="spot-meta" style="margin-top:10px;">
+                                <span><i class="fa-solid fa-user-group"></i> 山友分享</span>
+                                <span style="color: #0288d1; font-weight: bold;">詳細內頁 <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                wallGrid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+
+            const shareCards = wallGrid.querySelectorAll('.spot-card');
+            shareCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('.share-card-actions')) return;
+                    const id = this.getAttribute('data-share-id');
+                    closeShareModal(); // 轉跳關閉牆面
+                    setTimeout(() => openModal(id), 200);
+                });
+            });
+
+            wallGrid.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() { editShare(this.getAttribute('data-edit-id')); });
+            });
+
+            wallGrid.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() { deleteShare(this.getAttribute('data-delete-id')); });
+            });
+        }
+
+        function setupCardEvents() {
+            const cards = document.querySelectorAll('.spots-grid .spot-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('.spot-fav')) return;
+                    const id = this.getAttribute('data-id');
+                    openModal(id);
+                });
+            });
+
+            const favButtons = document.querySelectorAll('.spot-fav i');
+            favButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const id = this.parentElement.getAttribute('data-fav-id');
+                    toggleFavorite(id, e);
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAllGrids();
+
+            document.getElementById('searchBtn').addEventListener('click', performSearch);
+            document.getElementById('searchInput').addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+
+            document.getElementById('modalClose').addEventListener('click', closeModal);
+            document.getElementById('detailModal').addEventListener('click', (e) => {
+                if (e.target.id === 'detailModal') closeModal();
+            });
+
+            document.getElementById('mapTrigger').addEventListener('click', openMapModal);
+            document.getElementById('mapModalClose').addEventListener('click', closeMapModal);
+            document.getElementById('taiwanMapModal').addEventListener('click', (e) => {
+                if (e.target.id === 'taiwanMapModal') closeMapModal();
+            });
+
+            // 情報牆與表單觸發核心綁定
+            document.getElementById('shareTrigger').addEventListener('click', openShareModal);
+            document.getElementById('shareModalClose').addEventListener('click', closeShareModal);
+            document.getElementById('userShareModal').addEventListener('click', (e) => {
+                if (e.target.id === 'userShareModal') closeShareModal();
+            });
+
+            // 點擊新增分享按鈕 -> 彈出表單視窗
+            document.getElementById('innerOpenFormBtn').addEventListener('click', openFormDialog);
+            document.getElementById('formDialogClose').addEventListener('click', closeFormDialog);
+            document.getElementById('shareFormDialogModal').addEventListener('click', (e) => {
+                if (e.target.id === 'shareFormDialogModal') closeFormDialog();
+            });
+
+            // 表單發布與就地編輯更新邏輯
+            document.getElementById('secretUploadForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const editId = document.getElementById('formEditId').value;
+                const nameInput = document.getElementById('formName').value.trim();
+                const zoneInput = document.getElementById('formZone').value;
+                const timeInput = document.getElementById('formTimeInput').value.trim();
+                const descInput = document.getElementById('formDesc').value.trim();
+                const trafficInput = document.getElementById('formTraffic').value.trim();
+                const noticeInput = document.getElementById('formNoticeInput').value.trim();
+                const imgFileInput = document.getElementById('formImg');
+
+                const checkedTypes = [];
+                document.querySelectorAll('input[name="formType"]:checked').forEach(cb => {
+                    checkedTypes.push(cb.value);
+                });
+                const finalTag = `${zoneInput} · ${checkedTypes.length > 0 ? checkedTypes.join('/') : '秘境'}`;
+
+                let userShares = JSON.parse(localStorage.getItem('userSharedSecrets')) || [];
+
+                const savePostData = (imageDataUrl) => {
+                    if (editId) {
+                        const existingSpot = userShares.find(item => item.id === editId);
+                        if (existingSpot) {
+                            existingSpot.name = nameInput;
+                            existingSpot.tag = finalTag;
+                            existingSpot.time = timeInput;
+                            existingSpot.desc = descInput;
+                            existingSpot.transport = trafficInput;
+                            existingSpot.notice = noticeInput;
+                            if (imageDataUrl) existingSpot.img = imageDataUrl;
+                        }
+                        alert('💾 秘境情報修改成功，資料已更新！');
+                    } else {
+                        const newSecretObject = {
+                            id: "user_" + Date.now(),
+                            name: nameInput,
+                            tag: finalTag,
+                            time: timeInput,
+                            desc: descInput,
+                            transport: trafficInput,
+                            notice: noticeInput,
+                            img: imageDataUrl || 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600'
+                        };
+                        userShares.unshift(newSecretObject);
+                        alert('🎉 恭喜！新秘境情報已成功發布上傳！');
+                    }
+
+                    localStorage.setItem('userSharedSecrets', JSON.stringify(userShares));
+                    closeFormDialog(); // 關閉表單
+                    renderShareWall(); // 重新渲染情報牆
+                };
+
+                if (imgFileInput.files && imgFileInput.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) { savePostData(event.target.result); };
+                    reader.readAsDataURL(imgFileInput.files[0]);
+                } else {
+                    savePostData(null);
+                }
+            });
+
+            // 地圖 Tooltip 雷達控制
+            const mapPins = document.querySelectorAll('.map-pin');
+            const defaultPrompt = document.getElementById('mapDefaultPrompt');
+            const tooltipCard = document.getElementById('mapTooltipCard');
+            
+            function showMapTooltip(spot) {
+                defaultPrompt.style.display = 'none';
+                tooltipCard.style.display = 'block';
+                document.getElementById('mapTipImg').style.backgroundImage = `url('${spot.img}')`;
+                document.getElementById('mapTipName').innerText = spot.name;
+                document.getElementById('mapTipDesc').innerText = spot.desc;
+
+                const viewMoreBtn = document.getElementById('mapTipBtn');
+                const newBtn = viewMoreBtn.cloneNode(true);
+                viewMoreBtn.parentNode.replaceChild(newBtn, viewMoreBtn);
+                newBtn.addEventListener('click', () => {
+                    closeMapModal();
+                    setTimeout(() => openModal(spot.id), 200);
+                });
+            }
+
+            function hideMapTooltip() {
+                tooltipCard.style.display = 'none';
+                defaultPrompt.style.display = 'block';
+            }
+
+            mapPins.forEach(pin => {
+                const pinId = pin.getAttribute('data-pin-id');
+                const spot = spotsData.find(item => item.id === pinId);
+                if (!spot) return;
+
+                pin.addEventListener('mouseenter', function() { showMapTooltip(spot); });
+                pin.addEventListener('mouseleave', function() { hideMapTooltip(); });
+                pin.addEventListener('click', function() {
+                    closeMapModal();
+                    setTimeout(() => openModal(spot.id), 200);
+                });
+            });
+
+            tooltipCard.addEventListener('mouseenter', function() { this.style.display = 'block'; });
+            tooltipCard.addEventListener('mouseleave', function() { hideMapTooltip(); });
+        });
+    </script>
+</body>
+</html>
